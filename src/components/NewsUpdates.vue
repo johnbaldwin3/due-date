@@ -5,14 +5,14 @@
         <h2 class="text-xs-center white--text">Nicki is currently {{handleWeeks}} weeks pregnant...</h2>
       </v-flex>
     </v-layout>
-    <v-layout jrow>
+    <v-layout row>
       <v-flex mb-2 xs12>
         <h2 class="text-xs-center white--text">At last checkup, Baby John was 2 lbs. and 2 oz.</h2>
       </v-flex>
     </v-layout>
     <v-layout row wrap>
       <v-flex xs12 sm6 offset-sm3>
-        <v-card>
+        <v-card elevation-2>
           <v-container grid-list-sm fluid>
             <v-layout row wrap>
               <v-flex v-for="(image, index) in imageUrls" :key="index" xs4 d-flex>

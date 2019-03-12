@@ -15,14 +15,11 @@
 </template>
 
 <script>
-import Countdown from './components/Countdown.vue';
-// import CountdownFlip from './components/CountdownFlip.vue';
 import FlipCountdown from './components/FlipCountdown.vue';
 import NewsUpdates from './components/NewsUpdates.vue';
 export default {
   name: 'app',
   components: {
-    Countdown,
     FlipCountdown,
     NewsUpdates
   }
