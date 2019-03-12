@@ -1,7 +1,9 @@
 import Vue from 'vue'
 import './plugins/vuetify'
 import App from './App.vue'
+import VueYouTubeEmbed from 'vue-youtube-embed'
 
+Vue.use(VueYouTubeEmbed, { global: true, componentId: "youtube-media" })
 
 Vue.filter('zerofill', function (value) {
   //value = ( value < 0 ? 0 : value );

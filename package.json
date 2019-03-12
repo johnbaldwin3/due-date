@@ -13,6 +13,7 @@
     "less-loader": "^4.1.0",
     "moment": "^2.24.0",
     "vue": "^2.5.17",
+    "vue-youtube-embed": "^2.2.1",
     "vue2-flip-countdown": "^0.5.3",
     "vuetify": "^1.5.5"
   },

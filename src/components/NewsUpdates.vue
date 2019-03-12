@@ -1,6 +1,6 @@
 <template>
   <v-container>
-    <v-layout jrow>
+    <v-layout row>
       <v-flex mb-2 xs12>
         <h2 class="text-xs-center white--text">Nicki is currently {{handleWeeks}} weeks pregnant...</h2>
       </v-flex>
@@ -31,6 +31,18 @@
         </v-card>
       </v-flex>
     </v-layout>
+    <v-container>
+      <v-layout align-center justify-space-around mt-4 column>
+        <v-flex xs12> 
+          <youtube-media :video-id="genderReveal"></youtube-media>
+        </v-flex>
+      <!-- </v-layout>
+      <v-layout align-center justify-center> -->
+         <v-flex xs12> 
+          <youtube-media :video-id="announcementVid"></youtube-media>
+        </v-flex>
+      </v-layout>
+    </v-container>
   </v-container>
 </template>
 
@@ -51,7 +63,9 @@ export default {
         { src: require("@/assets/images/7.jpg") },
         { src: require("@/assets/images/8.jpg") },
         { src: require("@/assets/images/9.jpg") }
-      ]
+      ],
+      genderReveal: "wFZE_HzKsFw",
+      announcementVid: "oZoQ75kK464"
     };
   },
   computed: {
