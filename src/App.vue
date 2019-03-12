@@ -1,29 +1,41 @@
 <template>
-  <div id="app">
-    <!-- <img alt="Vue logo" src="./assets/logo.png"> -->
-    <div>When is Nicki due?</div>
-    <Countdown deadline="May 25, 2019"></Countdown>
-  </div>
+  <v-app app>
+    <v-toolbar dark color="teal lighten-1">
+      <v-toolbar-title center class="text--center"><h1> When is Nicki Due!?</h1></v-toolbar-title>
+    </v-toolbar>
+    <v-content>
+      <v-container>
+         <v-layout align-center justify-center row>
+            <v-flex xs12> 
+              <flip-countdown deadline="2019-05-25 00:00:00"></flip-countdown>
+            </v-flex>
+          </v-layout>
+          <v-layout align-center justify-center row>
+            <v-flex xs6 offset-xs3>
+              <v-btn prepend-icon="clear" dark color="teal darken-1" class="text--white" target="_blank" href="https://babybety.com/pool/john-and-nicki-baldwin/?accesspool="> Join the office pool!<v-icon right dark>child_friendly</v-icon> </v-btn>
+            </v-flex>
+          </v-layout> 
+      </v-container>
+    </v-content>
+  </v-app>
 </template>
 
 <script>
 import Countdown from './components/Countdown.vue';
+// import CountdownFlip from './components/CountdownFlip.vue';
+import FlipCountdown from './components/FlipCountdown.vue';
 
 export default {
   name: 'app',
   components: {
-    Countdown
+    Countdown,
+    FlipCountdown
   }
 }
 </script>
 
 <style>
 #app {
-  font-family: 'Avenir', Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
+  background-color: gray;
 }
 </style>
