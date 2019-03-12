@@ -1,25 +1,34 @@
 <template>
-    <div class="container flip-clock">
+  <v-container align-center justify-center row class="container flip-clock">
+    <v-layout row wrap>
+      <v-flex xs12>
         <template v-for="data in timeData" v-show="show">
-            <span v-bind:key="data.label" class="flip-clock__piece" :id="data.elementId">
-                <span class="flip-clock__card flip-card">
-                <b class="flip-card__top">{{data.current | twoDigits}}</b>
-                <b class="flip-card__bottom" v-bind:data-value="data.current | twoDigits"></b>
-                <b class="flip-card__back" v-bind:data-value="data.previous | twoDigits"></b>
-                <b class="flip-card__back-bottom" v-bind:data-value="data.previous | twoDigits"></b>
-                </span>
-                <span mt-1 class="flip-clock__slot">{{data.label}}</span>
+          <span v-bind:key="data.label" class="flip-clock__piece" :id="data.elementId">
+            <span class="flip-clock__card flip-card">
+              <b class="flip-card__top">{{data.current | twoDigits}}</b>
+              <b class="flip-card__bottom" v-bind:data-value="data.current | twoDigits"></b>
+              <b class="flip-card__back" v-bind:data-value="data.previous | twoDigits"></b>
+              <b class="flip-card__back-bottom" v-bind:data-value="data.previous | twoDigits"></b>
             </span>
+            <span mt-1 class="flip-clock__slot">{{data.label}}</span>
+          </span>
         </template>
-    </div>
+      </v-flex>
+    </v-layout>
+    <BettyButton/>
+  </v-container>
 </template>
 
 <script>
-let interval = null
-const uuidv4 = require('uuid/v4')
+import BettyButton from "./BettyButton.vue";
+let interval = null;
+const uuidv4 = require("uuid/v4");
 
 export default {
-  name: 'flipCountdown',
+  name: "flipCountdown",
+  components: {
+    BettyButton
+  },
   props: {
     deadline: {
       type: String
@@ -30,18 +39,18 @@ export default {
     labels: {
       type: Object,
       required: false,
-      default: function () {
+      default: function() {
         return {
-          days: 'Days',
-          hours: 'Hours',
-          minutes: 'Minutes',
-          seconds: 'Seconds'
-        }
+          days: "Days",
+          hours: "Hours",
+          minutes: "Minutes",
+          seconds: "Seconds"
+        };
       }
     }
   },
-  data () {
-    const uuid = uuidv4()
+  data() {
+    const uuid = uuidv4();
     return {
       now: Math.trunc(new Date().getTime() / 1000),
       date: null,
@@ -53,131 +62,132 @@ export default {
           current: 0,
           previous: 0,
           label: this.labels.days,
-          elementId: 'flip-card-days-' + uuid
+          elementId: "flip-card-days-" + uuid
         },
         {
           current: 0,
           previous: 0,
           label: this.labels.hours,
-          elementId: 'flip-card-hours-' + uuid
+          elementId: "flip-card-hours-" + uuid
         },
         {
           current: 0,
           previous: 0,
           label: this.labels.minutes,
-          elementId: 'flip-card-minutes-' + uuid
+          elementId: "flip-card-minutes-" + uuid
         },
         {
           current: 0,
           previous: 0,
           label: this.labels.seconds,
-          elementId: 'flip-card-seconds-' + uuid
+          elementId: "flip-card-seconds-" + uuid
         }
       ]
-    }
+    };
   },
-  created () {
+  created() {
     if (!this.deadline) {
-      throw new Error("Missing props 'deadline'")
+      throw new Error("Missing props 'deadline'");
     }
-    const endTime = this.deadline
-    this.date = Math.trunc(Date.parse(endTime.replace(/-/g, '/')) / 1000)
+    const endTime = this.deadline;
+    this.date = Math.trunc(Date.parse(endTime.replace(/-/g, "/")) / 1000);
     if (!this.date) {
-      throw new Error("Invalid props value, correct the 'deadline'")
+      throw new Error("Invalid props value, correct the 'deadline'");
     }
     this.interval = setInterval(() => {
-      this.now = Math.trunc(new Date().getTime() / 1000)
-    }, 1000)
+      this.now = Math.trunc(new Date().getTime() / 1000);
+    }, 1000);
   },
-  mounted () {
+  mounted() {
     if (this.diff !== 0) {
-      this.show = true
+      this.show = true;
     }
   },
   computed: {
-    seconds () {
-      return Math.trunc(this.diff) % 60
+    seconds() {
+      return Math.trunc(this.diff) % 60;
     },
-    minutes () {
-      return Math.trunc(this.diff / 60) % 60
+    minutes() {
+      return Math.trunc(this.diff / 60) % 60;
     },
-    hours () {
-      return Math.trunc(this.diff / 60 / 60) % 24
+    hours() {
+      return Math.trunc(this.diff / 60 / 60) % 24;
     },
-    days () {
-      return Math.trunc(this.diff / 60 / 60 / 24)
+    days() {
+      return Math.trunc(this.diff / 60 / 60 / 24);
     }
   },
   watch: {
-    now (value) {
-      this.diff = this.date - this.now
+    now(value) {
+      this.diff = this.date - this.now;
       if (this.diff <= 0 || this.stop) {
-        this.diff = 0
-        this.updateTime(3, 0)
-        clearInterval(this.interval)
+        this.diff = 0;
+        this.updateTime(3, 0);
+        clearInterval(this.interval);
       } else {
-        this.updateTime(0, this.days)
-        this.updateTime(1, this.hours)
-        this.updateTime(2, this.minutes)
-        this.updateTime(3, this.seconds)
+        this.updateTime(0, this.days);
+        this.updateTime(1, this.hours);
+        this.updateTime(2, this.minutes);
+        this.updateTime(3, this.seconds);
       }
     }
   },
   filters: {
-    twoDigits (value) {
+    twoDigits(value) {
       if (value.toString().length <= 1) {
-        return '0' + value.toString()
+        return "0" + value.toString();
       }
-      return value.toString()
+      return value.toString();
     }
   },
   methods: {
-    updateTime (idx, newValue) {
+    updateTime(idx, newValue) {
       if (idx >= this.timeData.length || newValue === undefined) {
-        return
+        return;
       }
 
-      if (window['requestAnimationFrame']) {
-        this.frame = requestAnimationFrame(this.updateTime.bind(this))
+      if (window["requestAnimationFrame"]) {
+        this.frame = requestAnimationFrame(this.updateTime.bind(this));
       }
 
-      const d = this.timeData[idx]
-      const val = (newValue < 0 ? 0 : newValue)
+      const d = this.timeData[idx];
+      const val = newValue < 0 ? 0 : newValue;
 
       if (val !== d.current) {
-        d.previous = d.current
-        d.current = val
+        d.previous = d.current;
+        d.current = val;
 
-        const el = document.querySelector(`#${d.elementId}`)
+        const el = document.querySelector(`#${d.elementId}`);
         if (el) {
-          el.classList.remove('flip')
-          void el.offsetWidth
-          el.classList.add('flip')
+          el.classList.remove("flip");
+          void el.offsetWidth;
+          el.classList.add("flip");
         }
       }
     }
   },
-  beforeDestroy () {
-    if (window['cancelAnimationFrame']) {
-      cancelAnimationFrame(this.frame)
+  beforeDestroy() {
+    if (window["cancelAnimationFrame"]) {
+      cancelAnimationFrame(this.frame);
     }
   },
-  destroyed () {
-    clearInterval(interval)
+  destroyed() {
+    clearInterval(interval);
   }
-}
+};
 </script>
 
-<style scoped lang="less">
+<style lang="less">
 .flip-clock {
   text-align: center;
   margin: 0 auto;
 
   *,
   *:before,
-  *:after { box-sizing: border-box; }
+  *:after {
+    box-sizing: border-box;
+  }
 }
-
 
 .flip-clock__piece {
   display: inline-block;
@@ -207,8 +217,12 @@ export default {
 }
 
 @media (min-width: 1000px) {
-  .flip-clock__slot { font-size: 1.2rem; }
-  .flip-card { font-size: 3rem; }
+  .flip-clock__slot {
+    font-size: 1.2rem;
+  }
+  .flip-card {
+    font-size: 3rem;
+  }
 }
 
 .flip-card__top,
@@ -275,7 +289,7 @@ export default {
 
 .flip .flip-card__back::before {
   z-index: 1;
-  animation: flipTop 0.3s cubic-bezier(.37,.01,.94,.35);
+  animation: flipTop 0.3s cubic-bezier(0.37, 0.01, 0.94, 0.35);
   animation-fill-mode: both;
   transform-origin: center bottom;
 }
@@ -283,7 +297,7 @@ export default {
 .flip .flip-card__bottom {
   transform-origin: center top;
   animation-fill-mode: both;
-  animation: flipBottom 0.6s cubic-bezier(.15,.45,.28,1);
+  animation: flipBottom 0.6s cubic-bezier(0.15, 0.45, 0.28, 1);
 }
 
 @keyframes flipTop {
@@ -291,7 +305,8 @@ export default {
     transform: rotateX(0deg);
     z-index: 2;
   }
-  0%, 99% {
+  0%,
+  99% {
     opacity: 1;
   }
   100% {
@@ -301,7 +316,8 @@ export default {
 }
 
 @keyframes flipBottom {
-  0%, 50% {
+  0%,
+  50% {
     z-index: -1;
     transform: rotateX(90deg);
     opacity: 0;
