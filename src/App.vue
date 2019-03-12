@@ -7,7 +7,7 @@
       <v-container>
 
               <flip-countdown deadline="2019-05-25 00:00:00"></flip-countdown>
-              <NewUpdates />
+              <NewsUpdates />
 
       </v-container>
     </v-content>
