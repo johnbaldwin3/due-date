@@ -1,7 +1,7 @@
 <template>
   <v-container>
-    <v-layout>
-      <v-flex xs6 offset-xs3>
+    <v-layout align-center justify-center>
+      <v-flex xs12 class="text-xs-center">
         <ul class="vuejs-countdown">
           <li v-if="days > 0">
             <p class="digit">{{ days | twoDigits }}</p>
@@ -101,7 +101,9 @@ export default {
 <style scoped lang="stylus">
 .vuejs-countdown {
   padding: 0;
-  margin: 0;
+  margin: 0 auto;
+  color: white;
+  font-size: 20px;
 }
 
 .vuejs-countdown > li {
@@ -135,14 +137,14 @@ export default {
   content: '';
 }
 
-.vuejs-countdown.digit {
-  font-size: 32px;
+.vuejs-countdown .digit {
+  font-size: 40px;
   font-weight: 600;
   line-height: 1.4;
   margin-bottom: 0;
 }
 
-.vuejs-countdown.text {
+.vuejs-countdown .text {
   text-transform: uppercase;
   margin-bottom: 0;
   font-size: 10px;
