@@ -33,12 +33,14 @@
     </v-layout>
     <v-container>
       <v-layout align-center justify-space-around mt-4 column>
-        <v-flex xs12> 
+        <v-flex xs12>
+          <h4 class="text-xs-center white--text">Catch the Gender Reveal Video Here:</h4>
           <youtube-media :video-id="genderReveal"></youtube-media>
         </v-flex>
       <!-- </v-layout>
       <v-layout align-center justify-center> -->
-         <v-flex xs12> 
+         <v-flex xs12>
+           <h4 class="text-xs-center white--text">The Birth Announcement:</h4>
           <youtube-media :video-id="announcementVid"></youtube-media>
         </v-flex>
       </v-layout>

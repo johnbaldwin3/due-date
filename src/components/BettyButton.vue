@@ -19,6 +19,18 @@
         </v-btn>
       </div>
     </v-flex>
+      <v-flex align-center xs12>
+        <v-btn
+          prepend-icon="clear"
+          dark
+          color="indigo darken-1"
+          class="text--white"
+          target="_blank"
+          href="https://smile.amazon.com/baby-reg/johnbaldwin-iii-nicki-baldwin-may-2019-simpsonville/1EWSAIEUIV1XJ"
+        > Amazon Baby Registry
+          <v-icon right dark>shopping_cart</v-icon>
+        </v-btn>
+    </v-flex>
   </v-layout>
 </template>
 
