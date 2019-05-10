@@ -7,7 +7,7 @@
     </v-layout>
     <v-layout row>
       <v-flex mb-2 xs12>
-        <h2 class="text-xs-center white--text">At last checkup, Baby John was 2 lbs. and 2 oz.</h2>
+        <h2 class="text-xs-center white--text">At last checkup, Baby John was 6 lbs. and 4 oz.</h2>
       </v-flex>
     </v-layout>
     <v-layout row wrap>
@@ -17,7 +17,7 @@
             <v-layout row wrap>
               <v-flex v-for="(image, index) in imageUrls" :key="index" xs4 d-flex>
                 <v-card flat tile class="d-flex">
-                  <v-img :src="image.src" aspect-ratio="1" class="grey lighten-2">
+                  <v-img  :lazy-src="`https://fillmurray.com/200/300`" :src="image.src" aspect-ratio="1" class="grey lighten-2">
                     <template v-slot:placeholder>
                       <v-layout fill-height align-center justify-center ma-0>
                         <!-- <v-progress-circular indeterminate color="grey lighten-5"></v-progress-circular> -->
@@ -64,7 +64,9 @@ export default {
         { src: require("@/assets/images/6.jpg") },
         { src: require("@/assets/images/7.jpg") },
         { src: require("@/assets/images/8.jpg") },
-        { src: require("@/assets/images/9.jpg") }
+        { src: require("@/assets/images/10.jpg") },
+        { src: require("@/assets/images/11.jpg") },
+        { src: require("@/assets/images/12.jpg") },
       ],
       genderReveal: "wFZE_HzKsFw",
       announcementVid: "oZoQ75kK464"
