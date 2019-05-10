@@ -5,6 +5,7 @@
         <h2 class="text-xs-center white--text">Nicki is currently {{handleWeeks}} weeks pregnant...</h2>
       </v-flex>
     </v-layout>
+      <h3 class="text-xs-center white--text">Baby John could be here any day now, and Nicki and I are so grateful for the love, well-wishes, gifts, and good vibes from everyone. We truly appreciate each one of you! Thanks and <strong>Stay tuned!!</strong></h3>
     <v-layout row>
       <v-flex mb-2 xs12>
         <h2 class="text-xs-center white--text">At last checkup, Baby John was 6 lbs. and 4 oz.</h2>
